@@ -73,13 +73,14 @@ class CertificateBatchWebHandler(BatchHandler):
         logging.info('here is the op_return_code data: %s', b2h(self.merkle_tree.get_blockchain_data()))
         return self.merkle_tree.get_blockchain_data()
 
-
+/* app.py에서 certificate_batch_handler이다 */
 class CertificateBatchHandler(BatchHandler):
     """
     Manages a batch of certificates. Responsible for iterating certificates in a consistent order.
 
     In this case, certificates are initialized as an Ordered Dictionary, and we iterate in insertion order.
     """
+    /* issue_certificates.py에서 실행 */
     def pre_batch_actions(self, config):
         self._process_directories(config)
         
@@ -127,13 +128,17 @@ class CertificateBatchHandler(BatchHandler):
         for uid, metadata in self.certificates_to_issue.items():
             proof = next(proof_generator)
             self.certificate_handler.add_proof(metadata, proof)
-
+    
+    /* pre_batch_action메소드에서 실행 */
+    /* 설정파일에서부터 워킹 디렉토리를 설정하는 듯함 */
     def _process_directories(self, config):
+        /* 작업 디렉토리 설정 */
         unsigned_certs_dir = config.unsigned_certificates_dir
         signed_certs_dir = config.signed_certificates_dir
         blockchain_certificates_dir = config.blockchain_certificates_dir
         work_dir = config.work_dir
         
+        /* 분석부탁 */
         certificates_metadata = helpers.prepare_issuance_batch(
                 unsigned_certs_dir,
                 signed_certs_dir,
@@ -145,6 +150,8 @@ class CertificateBatchHandler(BatchHandler):
         if num_certificates < 1:
             return None
 
+        /* 로그를 님가는 코드 */
         logging.info('Processing %d certificates under work path=%s', num_certificates, work_dir)
+        /* set_certificates_in_batch를 찾을 수 없음 */
         self.set_certificates_in_batch(certificates_metadata)
 

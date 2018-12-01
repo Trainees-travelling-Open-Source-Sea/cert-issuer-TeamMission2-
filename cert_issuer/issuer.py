@@ -24,6 +24,7 @@ class Issuer:
         /* batch의 내용을 준비해 주는 코드인 듯 하다 */
         /* 확인 결과 머클 트리의 root의 hash를 blockchain_bytes에 넣어주는 듯 함 */
         /* certificationhandler의 prepare_batch -> merkle_tree_generator의 get_blockchain_data를 보면 root를 h2b써서(hash to byte인듯) 바이트형으로 반환? */
+        /*  */
         blockchain_bytes = self.certificate_batch_handler.prepare_batch()
 
         for attempt_number in range(0, self.max_retry):

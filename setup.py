@@ -43,6 +43,7 @@ class InstallCommand(Command):
                 reqs.extend(btc_reqs)
         install(reqs)
 
+/* 설치파일이다 cert-issuer 명령어가 정의되어 있는듯 */
 def install(packages):
     for package in packages:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])

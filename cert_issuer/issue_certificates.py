@@ -17,6 +17,7 @@ def issue(app_config, certificate_batch_handler, transaction_handler):
     /* set_certificates_in_batch는 어디있는지 찾지 못하겠음 */
     certificate_batch_handler.pre_batch_actions(app_config)
     
+    /* 추가분석필요 */
     /* balnce가 맞는지 확인해 주는 부분인듯 */
     /* transaction_cost > balance라면 오류메세지 출력 */
     transaction_handler.ensure_balance()

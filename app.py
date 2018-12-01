@@ -22,6 +22,8 @@ def issue():
     certificate_batch_handler, transaction_handler, connector = \
             bitcoin.instantiate_blockchain_handlers(config, False)
     /* json에는 certificates의 정보가 들어 있고, certificates의 정보를 batch로 만들어 certificate_batch_handler에 넣어주는듯 하다 */
+    /* models.py에 set_certificates_in_batch가 정의되어 있다 */
+    /* model.py에는 추상메소드가 정의도어있는것 같다 */
     certificate_batch_handler.set_certificates_in_batch(request.json)
     /* certificate_batch_handler에 대해 pre_batch_action을 수행 */
     /* transaction_handler에 대해 ensure_balance를 수행 */
